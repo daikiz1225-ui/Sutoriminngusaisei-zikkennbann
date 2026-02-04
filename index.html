@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Education Redirector</title>
+    <style>
+        body { font-family: 'Helvetica Neue', Arial, sans-serif; background: #f0f2f5; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .card { background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); width: 90%; max-width: 500px; text-align: center; }
+        h1 { color: #ff0000; font-size: 1.5rem; margin-bottom: 1.5rem; }
+        input { width: 100%; padding: 12px; margin-bottom: 1rem; border: 2px solid #ddd; border-radius: 8px; box-sizing: border-box; font-size: 1rem; }
+        button { width: 100%; padding: 12px; background: #28a745; color: white; border: none; border-radius: 8px; font-size: 1rem; cursor: pointer; font-weight: bold; }
+        button:hover { background: #218838; }
+        p { font-size: 0.8rem; color: #666; margin-top: 1rem; }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h1>Education Mode Converter</h1>
+    <input type="text" id="ytUrl" placeholder="YouTubeのURLを貼り付け">
+    <button onclick="convertToEdu()">YouTube Educationで開く</button>
+    <p>※新しいタブで教育用ページが開きます</p>
+</div>
+
+<script>
+    function convertToEdu() {
+        const urlInput = document.getElementById('ytUrl').value;
+        // 動画IDを抽出 (watch?v=XXXX や youtu.be/XXXX に対応)
+        const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+        const match = urlInput.match(regExp);
+
+        if (match && match[2].length === 11) {
+            const videoId = match[2];
+            // YouTube EducationのURL形式に変換
+            const eduUrl = `https://www.youtube.com/education?v=${videoId}`;
+            // 新しいタブで開く
+            window.open(eduUrl, '_blank');
+        } else {
+            alert("有効なYouTube URLを入力してください");
+        }
+    }
+</script>
+
+</body>
+</html>
