@@ -3,41 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YouTube Education Redirector</title>
+    <title>Jump to YT Education</title>
     <style>
-        body { font-family: 'Helvetica Neue', Arial, sans-serif; background: #f0f2f5; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-        .card { background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); width: 90%; max-width: 500px; text-align: center; }
-        h1 { color: #ff0000; font-size: 1.5rem; margin-bottom: 1.5rem; }
-        input { width: 100%; padding: 12px; margin-bottom: 1rem; border: 2px solid #ddd; border-radius: 8px; box-sizing: border-box; font-size: 1rem; }
-        button { width: 100%; padding: 12px; background: #28a745; color: white; border: none; border-radius: 8px; font-size: 1rem; cursor: pointer; font-weight: bold; }
-        button:hover { background: #218838; }
-        p { font-size: 0.8rem; color: #666; margin-top: 1rem; }
+        body { font-family: sans-serif; background: #f4f4f4; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .box { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); text-align: center; width: 400px; }
+        h2 { color: #d32f2f; margin-bottom: 20px; }
+        input { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; }
+        button { width: 100%; padding: 12px; background: #d32f2f; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; }
+        button:hover { background: #b71c1c; }
     </style>
 </head>
 <body>
 
-<div class="card">
-    <h1>Education Mode Converter</h1>
-    <input type="text" id="ytUrl" placeholder="YouTubeのURLを貼り付け">
-    <button onclick="convertToEdu()">YouTube Educationで開く</button>
-    <p>※新しいタブで教育用ページが開きます</p>
+<div class="box">
+    <h2>Edu Mode Jumper</h2>
+    <input type="text" id="targetUrl" placeholder="YouTube URLをペースト">
+    <button onclick="goToEdu()">Educationモードで開く</button>
 </div>
 
 <script>
-    function convertToEdu() {
-        const urlInput = document.getElementById('ytUrl').value;
-        // 動画IDを抽出 (watch?v=XXXX や youtu.be/XXXX に対応)
+    function goToEdu() {
+        const input = document.getElementById('targetUrl').value;
         const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
-        const match = urlInput.match(regExp);
+        const match = input.match(regExp);
 
         if (match && match[2].length === 11) {
             const videoId = match[2];
-            // YouTube EducationのURL形式に変換
+            // 埋め込みではなく、YouTube公式のEducationページへリダイレクト
             const eduUrl = `https://www.youtube.com/education?v=${videoId}`;
-            // 新しいタブで開く
-            window.open(eduUrl, '_blank');
+            
+            // 現在のタブで開く（フィルター回避のため）
+            window.location.href = eduUrl;
         } else {
-            alert("有効なYouTube URLを入力してください");
+            alert("URLを正しく入力してください");
         }
     }
 </script>
