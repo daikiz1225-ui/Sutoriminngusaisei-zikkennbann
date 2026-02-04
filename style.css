@@ -1,0 +1,46 @@
+/* 全体設定 */
+body {
+    margin: 0; background-color: #0f0f0f; color: white;
+    font-family: sans-serif; overflow: hidden;
+}
+
+/* ヘッダー */
+.header {
+    height: 56px; display: flex; align-items: center; justify-content: space-between;
+    padding: 0 16px; position: fixed; top: 0; width: 100%; z-index: 10; background: #0f0f0f;
+}
+.logo { font-size: 20px; font-weight: bold; width: 200px; }
+.search-bar { display: flex; flex: 1; max-width: 600px; }
+.search-bar input {
+    flex: 1; background: #121212; border: 1px solid #303030; color: white;
+    padding: 8px 16px; border-radius: 40px 0 0 40px; outline: none;
+}
+.search-bar button {
+    background: #222; border: 1px solid #303030; color: white;
+    padding: 0 20px; border-radius: 0 40px 40px 0; cursor: pointer;
+}
+
+/* レイアウト */
+.container { display: flex; margin-top: 56px; height: calc(100vh - 56px); }
+
+/* サイドバー */
+.sidebar { width: 240px; padding: 12px; display: flex; flex-direction: column; }
+.sidebar ul { list-style: none; padding: 0; }
+.sidebar li { padding: 12px; cursor: pointer; border-radius: 8px; }
+.sidebar li:hover { background: #272727; }
+.spacer { flex-grow: 1; }
+
+/* メインコンテンツ */
+.main-content { flex: 1; position: relative; padding: 20px; background: #000; }
+#displayArea { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
+iframe { width: 100%; height: 100%; border: none; }
+
+.placeholder { color: #aaa; font-size: 1.2rem; }
+
+/* 再読み込みボタン */
+.reload-button {
+    position: absolute; bottom: 20px; right: 40px;
+    padding: 10px 20px; background: #272727; color: white;
+    border: 1px solid #3e3e3e; border-radius: 4px; cursor: pointer; font-size: 12px;
+}
+.reload-button:hover { background: #3f3f3f; }
