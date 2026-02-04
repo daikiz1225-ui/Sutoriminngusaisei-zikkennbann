@@ -3,42 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jump to YT Education</title>
-    <style>
-        body { font-family: sans-serif; background: #f4f4f4; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-        .box { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); text-align: center; width: 400px; }
-        h2 { color: #d32f2f; margin-bottom: 20px; }
-        input { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; }
-        button { width: 100%; padding: 12px; background: #d32f2f; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; }
-        button:hover { background: #b71c1c; }
-    </style>
+    <title>kick tube</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="box">
-    <h2>Edu Mode Jumper</h2>
-    <input type="text" id="targetUrl" placeholder="YouTube URLをペースト">
-    <button onclick="goToEdu()">Educationモードで開く</button>
-</div>
+    <header class="header">
+        <div class="logo">kick tube</div>
+        <div class="search-bar">
+            <input type="text" id="urlInput" placeholder="YouTubeのURLを入力して変換...">
+            <button id="searchBtn">検索</button>
+        </div>
+        <div class="header-right"></div>
+    </header>
 
-<script>
-    function goToEdu() {
-        const input = document.getElementById('targetUrl').value;
-        const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
-        const match = input.match(regExp);
+    <div class="container">
+        <nav class="sidebar">
+            <ul>
+                <li>ホーム</li>
+                <li>登録チャンネル</li>
+                <li class="spacer"></li>
+                <li>設定</li>
+            </ul>
+        </nav>
 
-        if (match && match[2].length === 11) {
-            const videoId = match[2];
-            // 埋め込みではなく、YouTube公式のEducationページへリダイレクト
-            const eduUrl = `https://www.youtube.com/education?v=${videoId}`;
+        <main class="main-content">
+            <div id="displayArea">
+                <div class="placeholder">ここに動画が表示されます</div>
+            </div>
             
-            // 現在のタブで開く（フィルター回避のため）
-            window.location.href = eduUrl;
-        } else {
-            alert("URLを正しく入力してください");
-        }
-    }
-</script>
+            <button id="reloadBtn" class="reload-button">動画を再読み込みする</button>
+        </main>
+    </div>
 
+    <script type="module" src="js/main.js"></script>
 </body>
 </html>
